@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Lib.Data;assembly=MailSender.Lib"
         xmlns:entities="clr-namespace:MailSender.Lib.Entities;assembly=MailSender.Lib"
-
         mc:Ignorable="d"
         Title="WpfMailSender" Height="450" Width="800">
 
@@ -56,13 +55,13 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button ToolTip="Add">
+                            <Button ToolTip="Добавить">
                                 <Image Source="Resources/Add_16x.png"/>
                             </Button>
-                            <Button ToolTip="Del">
+                            <Button ToolTip="Удалить">
                                 <Image Source="Resources/Remove_16x.png"/>
                             </Button>
-                            <Button ToolTip="Edit">
+                            <Button ToolTip="Изменить" Click="ButtonEditSender_OnClick">
                                 <Image Source="Resources/Edit_16x.png"/>
                             </Button>
                         </ToolBar>

@@ -58,10 +58,17 @@
     <Compile Include="AccountInfoWindow.xaml.cs">
       <DependentUpon>AccountInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditSenderWindow.xaml.cs">
+      <DependentUpon>EditSenderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSenderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
