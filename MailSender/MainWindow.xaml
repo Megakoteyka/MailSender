@@ -20,19 +20,142 @@
     <Grid Margin="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Файл"></MenuItem>
+            <MenuItem Header="Сервис"></MenuItem>
+            <MenuItem Header="Помощь"></MenuItem>
+        </Menu>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <TabControl Grid.Row="1">
+            <TabItem Header="Рассылка">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ToolBarTray Grid.Row="0">
+                        <ToolBar Header="Отправители">
+                            <ComboBox Width="200"/>
+                            <Button ToolTip="Add">
+                                <Image Source="Resources/Add_16x.png"/>
+                            </Button>
+                            <Button ToolTip="Del">
+                                <Image Source="Resources/Remove_16x.png"/>
+                            </Button>
+                            <Button ToolTip="Edit">
+                                <Image Source="Resources/Edit_16x.png"/>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Header="Серверы">
+                            <ComboBox Width="200"/>
+                            <Button ToolTip="Add">
+                                <Image Source="Resources/Add_16x.png"/>
+                            </Button>
+                            <Button ToolTip="Del">
+                                <Image Source="Resources/Remove_16x.png"/>
+                            </Button>
+                            <Button ToolTip="Edit">
+                                <Image Source="Resources/Edit_16x.png"/>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+
+                    <GroupBox Grid.Row="1" Header="Получатели">
+                        <DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Имя" Width="*"/>
+                                <DataGridTextColumn Header="Адрес" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Планировщик">
+                <DockPanel>
+                    <GroupBox Header="Управление">
+                        <StackPanel>
+                            <Calendar DisplayMode="Month"/>
+                            <Button HorizontalContentAlignment="Stretch">
+                                <DockPanel>
+                                    <Image DockPanel.Dock="Left" Height="16" Source="Resources/Time_16x.png" Margin="20,0,0,0"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="Запланировать"/>
+                                </DockPanel>
+                            </Button>
+                            <Button HorizontalContentAlignment="Stretch">
+                                <DockPanel>
+                                    <Image DockPanel.Dock="Left" Height="16" Source="Resources/SendEmail_16x.png" Margin="20,0,0,0"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="Отправить"/>
+                                </DockPanel>
+                            </Button>
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="Задания">
+                        <ListBox>
+
+                        </ListBox>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Письма">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="150" MaxWidth="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <GroupBox Grid.Column="0" Header="Список писем">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ListBox Grid.Row="0">
+                                <ListBoxItem>Письмо 1</ListBoxItem>
+                                <ListBoxItem>Письмо 2</ListBoxItem>
+                                <ListBoxItem>Письмо 3</ListBoxItem>
+                                <ListBoxItem>Письмо 4</ListBoxItem>
+                                <ListBoxItem>Письмо 5</ListBoxItem>
+                            </ListBox>
+                            
+                            <UniformGrid Grid.Row="1" Rows="1">
+                                <Button>Add</Button>
+                                <Button>Del</Button>
+                            </UniformGrid>
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Grid.Column="1" Header="Выбранное письмо">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Grid.Row="0" Header="Тема письма">
+                                <TextBox/>
+                            </GroupBox>
+                            <GroupBox Grid.Row="1" Header="Текст письма">
+                                <TextBox AcceptsReturn="True" TextWrapping="Wrap"/>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <StatusBar Grid.Row="2"></StatusBar>
+
+        <!--<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBlock Text="SMTP сервер" VerticalAlignment="Center" Margin="3,0"/>
             <ComboBox ItemsSource="{Binding Servers}" SelectedValue="{Binding Server, Mode=OneWayToSource}" Width="100" IsEditable="False">
                 <ComboBox.ItemTemplate>
@@ -47,9 +170,9 @@
 
             <TextBlock Text="Пароль" VerticalAlignment="Center" Margin="3,0"/>
             <PasswordBox Width="150" Margin="3,0" x:Name="PasswordBox"/>
-        </StackPanel>
+        </StackPanel>-->
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Отправитель" VerticalAlignment="Center" Margin="3"/>
+        <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="Отправитель" VerticalAlignment="Center" Margin="3"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding From}" Margin="3"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Получатель" VerticalAlignment="Center" Margin="3"/>
@@ -62,6 +185,6 @@
                  Margin="4" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"/>
 
         <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Отправить" FontWeight="Bold"
-                HorizontalAlignment="Center" Margin="3" Padding="10,0" Click="ButtonSend_OnClick"/>
+                HorizontalAlignment="Center" Margin="3" Padding="10,0" Click="ButtonSend_OnClick"/>-->
     </Grid>
 </Window>

@@ -110,5 +110,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Add_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Remove_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Edit_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SendEmail_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Time_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
