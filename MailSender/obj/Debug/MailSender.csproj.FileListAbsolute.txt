@@ -33,3 +33,6 @@ C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\obj\
 C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\obj\Debug\MailSender.exe
 C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\obj\Debug\MailSender.pdb
 C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\obj\Debug\MailSender.csprojAssemblyReference.cache
+C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\bin\Debug\MailSender.Lib.dll
+C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\bin\Debug\MailSender.Lib.pdb
+C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\obj\Debug\MailSender.csproj.CopyComplete

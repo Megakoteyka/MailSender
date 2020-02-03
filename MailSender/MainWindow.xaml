@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
+        xmlns:data="clr-namespace:MailSender.Lib.Data;assembly=MailSender.Lib"
+        xmlns:entities="clr-namespace:MailSender.Lib.Entities;assembly=MailSender.Lib"
+
         mc:Ignorable="d"
         Title="WpfMailSender" Height="450" Width="800">
 
@@ -12,8 +15,11 @@
     </d:Window.DataContext>
 
     <Window.Resources>
-        <DataTemplate DataType="local:MailServerInfo" x:Key="MailServerInfoTemplate">
-            <TextBlock Text="{Binding Name}"/>
+        <DataTemplate DataType="entities:Sender" x:Key="SenderTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding Address}" Opacity="50"/>
+            </StackPanel>
         </DataTemplate>
     </Window.Resources>
     
@@ -39,7 +45,16 @@
                     </Grid.RowDefinitions>
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Отправители">
-                            <ComboBox Width="200"/>
+                            <ComboBox Width="200" ItemsSource="{x:Static data:TestData.Senders}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="entities:Sender">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding Address}" Opacity="0.5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Button ToolTip="Add">
                                 <Image Source="Resources/Add_16x.png"/>
                             </Button>
@@ -51,7 +66,18 @@
                             </Button>
                         </ToolBar>
                         <ToolBar Header="Серверы">
-                            <ComboBox Width="200"/>
+                            <ComboBox Width="200" ItemsSource="{x:Static data:TestData.Servers}" SelectedIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="entities:Server">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding Address}" Opacity="0.5"/>
+                                            <TextBlock Text=":" Opacity="0.5"/>
+                                            <TextBlock Text="{Binding Port}" Opacity="0.5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Button ToolTip="Add">
                                 <Image Source="Resources/Add_16x.png"/>
                             </Button>
@@ -79,19 +105,23 @@
                 <DockPanel>
                     <GroupBox Header="Управление">
                         <StackPanel>
-                            <Calendar DisplayMode="Month"/>
-                            <Button HorizontalContentAlignment="Stretch">
-                                <DockPanel>
-                                    <Image DockPanel.Dock="Left" Height="16" Source="Resources/Time_16x.png" Margin="20,0,0,0"/>
+                            <Calendar DisplayMode="Month" Margin="1"/>
+
+                            <Button HorizontalContentAlignment="Stretch" Margin="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image DockPanel.Dock="Left" Height="16" Source="Resources/Time_16x.png" Margin="5,0"/>
                                     <TextBlock HorizontalAlignment="Center" Text="Запланировать"/>
-                                </DockPanel>
+                                </StackPanel>
                             </Button>
-                            <Button HorizontalContentAlignment="Stretch">
-                                <DockPanel>
-                                    <Image DockPanel.Dock="Left" Height="16" Source="Resources/SendEmail_16x.png" Margin="20,0,0,0"/>
+                            
+                            <Button HorizontalContentAlignment="Stretch" Margin="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image DockPanel.Dock="Left" Height="16" Source="Resources/SendEmail_16x.png" Margin="5,0"/>
                                     <TextBlock HorizontalAlignment="Center" Text="Отправить"/>
-                                </DockPanel>
+                                </StackPanel>
                             </Button>
+
+
                         </StackPanel>
 
                     </GroupBox>
@@ -144,7 +174,7 @@
                                 <TextBox/>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Header="Текст письма">
-                                <TextBox AcceptsReturn="True" TextWrapping="Wrap"/>
+                                <TextBox AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
                             </GroupBox>
                         </Grid>
                     </GroupBox>
@@ -153,7 +183,9 @@
             </TabItem>
         </TabControl>
 
-        <StatusBar Grid.Row="2"></StatusBar>
+        <StatusBar Grid.Row="2">
+            <TextBlock Text="Status bar"/>
+        </StatusBar>
 
         <!--<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBlock Text="SMTP сервер" VerticalAlignment="Center" Margin="3,0"/>

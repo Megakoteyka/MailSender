@@ -12,40 +12,40 @@ namespace MailSender
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<MailServerInfo> Servers => MailServerInfo.Servers;
+        //public ObservableCollection<MailServerInfo> Servers => MailServerInfo.Servers;
 
-        public MailServerInfo Server { get; set; }
-        public string UserName { get; set; }
-        public SecureString Password { get; set; }
+        //public MailServerInfo Server { get; set; }
+        //public string UserName { get; set; }
+        //public SecureString Password { get; set; }
 
-        public string From { get; set; }
-        public string To { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
+        //public string From { get; set; }
+        //public string To { get; set; }
+        //public string Subject { get; set; }
+        //public string Body { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = this;
-            Server = Servers.FirstOrDefault();
+            //DataContext = this;
+            //Server = Servers.FirstOrDefault();
         }
 
-        private void ButtonSend_OnClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Password = PasswordBox.SecurePassword;
+        //private void ButtonSend_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Password = PasswordBox.SecurePassword;
 
-                EmailSendServiceClass.SendMail(From, To, Subject, Body, Server, UserName, Password);
+        //        EmailSendServiceClass.SendMail(From, To, Subject, Body, Server, UserName, Password);
 
-                var text = $"From: {From}\nTo: {To}\nSubject: {Subject}\nBody: {Body}\n\n";
-                MessageWindow.Show("Ура!", text + "Сообщение как будто отправлено, но на самом деле нет.", Brushes.Green);
-            }
-            catch (Exception exception)
-            {
-                MessageWindow.Show("Ошибка!", exception.ToString(), Brushes.Red);
-            }
-        }
+        //        var text = $"From: {From}\nTo: {To}\nSubject: {Subject}\nBody: {Body}\n\n";
+        //        MessageWindow.Show("Ура!", text + "Сообщение как будто отправлено, но на самом деле нет.", Brushes.Green);
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        MessageWindow.Show("Ошибка!", exception.ToString(), Brushes.Red);
+        //    }
+        //}
     }
 }
