@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security;
 using System.Windows;
 using System.Windows.Media;
+using MailSender.Lib;
+using MailSender.Lib.Entities;
 
 namespace MailSender
 {
@@ -12,40 +14,23 @@ namespace MailSender
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public ObservableCollection<MailServerInfo> Servers => MailServerInfo.Servers;
-
-        //public MailServerInfo Server { get; set; }
-        //public string UserName { get; set; }
-        //public SecureString Password { get; set; }
-
-        //public string From { get; set; }
-        //public string To { get; set; }
-        //public string Subject { get; set; }
-        //public string Body { get; set; }
-
         public MainWindow()
         {
             InitializeComponent();
-
-            //DataContext = this;
-            //Server = Servers.FirstOrDefault();
         }
 
-        //private void ButtonSend_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Password = PasswordBox.SecurePassword;
+        private void ButtonSend_OnClick(object sender, RoutedEventArgs e)
+        {
+            var mailSender = CbSenders.SelectedValue as Sender;
+            if (mailSender == null) throw new ArgumentNullException(nameof(mailSender));
+            
+            var server = CbServers.SelectedValue as Server;
+            if (server == null) throw new ArgumentNullException(nameof(server));
+            
+            var recipient = DgRecipients.SelectedValue as Recipient;
+            if (recipient == null) throw new ArgumentNullException(nameof(recipient));
 
-        //        EmailSendServiceClass.SendMail(From, To, Subject, Body, Server, UserName, Password);
-
-        //        var text = $"From: {From}\nTo: {To}\nSubject: {Subject}\nBody: {Body}\n\n";
-        //        MessageWindow.Show("Ура!", text + "Сообщение как будто отправлено, но на самом деле нет.", Brushes.Green);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        MessageWindow.Show("Ошибка!", exception.ToString(), Brushes.Red);
-        //    }
-        //}
+            new Lib.DebugMailSender(server).Send(TbMessageSubject.Text, TbMessageText.Text, mailSender.Address, recipient.Address);
+        }
     }
 }

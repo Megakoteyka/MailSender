@@ -45,7 +45,8 @@
                     </Grid.RowDefinitions>
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Отправители">
-                            <ComboBox Width="200" ItemsSource="{x:Static data:TestData.Senders}" SelectedIndex="0">
+                            <ComboBox x:Name="CbSenders" Width="200"  SelectedIndex="0"
+                                      ItemsSource="{x:Static data:TestData.Senders}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="entities:Sender">
                                         <StackPanel Orientation="Horizontal">
@@ -66,7 +67,8 @@
                             </Button>
                         </ToolBar>
                         <ToolBar Header="Серверы">
-                            <ComboBox Width="200" ItemsSource="{x:Static data:TestData.Servers}" SelectedIndex="0">
+                            <ComboBox x:Name="CbServers" Width="200"  SelectedIndex="0"
+                                      ItemsSource="{x:Static data:TestData.Servers}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="entities:Server">
                                         <StackPanel Orientation="Horizontal">
@@ -91,10 +93,15 @@
                     </ToolBarTray>
 
                     <GroupBox Grid.Row="1" Header="Получатели">
-                        <DataGrid>
+                        <DataGrid x:Name="DgRecipients"
+                                  ItemsSource="{x:Static data:TestData.Recipients}" 
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  GridLinesVisibility="None"
+                                  VerticalScrollBarVisibility="Visible"
+                                  AlternatingRowBackground="Gainsboro">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Имя" Width="*"/>
-                                <DataGridTextColumn Header="Адрес" Width="*"/>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
@@ -114,7 +121,7 @@
                                 </StackPanel>
                             </Button>
                             
-                            <Button HorizontalContentAlignment="Stretch" Margin="1">
+                            <Button HorizontalContentAlignment="Stretch" Margin="1" Click="ButtonSend_OnClick">
                                 <StackPanel Orientation="Horizontal">
                                     <Image DockPanel.Dock="Left" Height="16" Source="Resources/SendEmail_16x.png" Margin="5,0"/>
                                     <TextBlock HorizontalAlignment="Center" Text="Отправить"/>
@@ -171,10 +178,12 @@
                             </Grid.RowDefinitions>
 
                             <GroupBox Grid.Row="0" Header="Тема письма">
-                                <TextBox/>
+                                <TextBox x:Name="TbMessageSubject" Text="Проверка MailSender"/>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Header="Текст письма">
-                                <TextBox AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+                                <TextBox x:Name="TbMessageText" Text="Это письмо отправлено приложением MailSender"
+                                         AcceptsReturn="True" TextWrapping="Wrap" 
+                                         VerticalScrollBarVisibility="Visible"/>
                             </GroupBox>
                         </Grid>
                     </GroupBox>
