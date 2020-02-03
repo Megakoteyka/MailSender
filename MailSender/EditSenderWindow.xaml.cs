@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using MailSender.Lib.Entities;
 
 namespace MailSender
 {
@@ -16,6 +15,12 @@ namespace MailSender
         private void ButtonOk_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+            Close();
+        }
+
+        private void ButtonCancel_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
             Close();
         }
     }

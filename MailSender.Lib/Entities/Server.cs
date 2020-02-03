@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MailSender.Lib.Entities
+﻿namespace MailSender.Lib.Entities
 {
     public class Server
     {
@@ -22,6 +16,5 @@ namespace MailSender.Lib.Entities
         public string Password { get; set; }
 
         public override string ToString() => Name;
-
     }
 }

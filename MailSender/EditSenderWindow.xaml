@@ -38,7 +38,7 @@
         <UniformGrid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1"
                      Rows="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Content="ОК" IsDefault="True" Width="100" Margin="3" Click="ButtonOk_OnClick"/>
-            <Button Content="Отмена" IsCancel="True" Width="100" Margin="3"/>
+            <Button Content="Отмена" IsCancel="True" Width="100" Margin="3" Click="ButtonCancel_OnClick"/>
         </UniformGrid>
 
     </Grid>
