@@ -6,12 +6,14 @@
         xmlns:local="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Lib.Data;assembly=MailSender.Lib"
         xmlns:entities="clr-namespace:MailSender.Lib.Entities;assembly=MailSender.Lib"
+        xmlns:viewModels="clr-namespace:MailSender.ViewModels"
+        xmlns:views="clr-namespace:MailSender.Views"
         mc:Ignorable="d"
         Title="WpfMailSender" Height="450" Width="800">
 
-    <d:Window.DataContext>
-        <local:MainWindow />
-    </d:Window.DataContext>
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
 
     <Window.Resources>
         <DataTemplate DataType="entities:Sender" x:Key="SenderTemplate">
@@ -44,8 +46,8 @@
                     </Grid.RowDefinitions>
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Отправители">
-                            <ComboBox x:Name="CbSenders" Width="200"  SelectedIndex="0"
-                                      ItemsSource="{x:Static data:TestData.Senders}">
+                            <ComboBox x:Name="CbSenders" Width="200"
+                                      ItemsSource="{Binding Senders}" SelectedValue="{Binding SelectedSender}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="entities:Sender">
                                         <StackPanel Orientation="Horizontal">
@@ -66,8 +68,8 @@
                             </Button>
                         </ToolBar>
                         <ToolBar Header="Серверы">
-                            <ComboBox x:Name="CbServers" Width="200"  SelectedIndex="0"
-                                      ItemsSource="{x:Static data:TestData.Servers}">
+                            <ComboBox x:Name="CbServers" Width="200"
+                                      ItemsSource="{Binding Servers}" SelectedValue="{Binding SelectedServer}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="entities:Server">
                                         <StackPanel Orientation="Horizontal">
@@ -93,7 +95,8 @@
 
                     <GroupBox Grid.Row="1" Header="Получатели">
                         <DataGrid x:Name="DgRecipients"
-                                  ItemsSource="{x:Static data:TestData.Recipients}" 
+                                  ItemsSource="{Binding Recipients}"
+                                  SelectedValue="{Binding SelectedRecipient}"
                                   AutoGenerateColumns="False" IsReadOnly="True"
                                   GridLinesVisibility="None"
                                   VerticalScrollBarVisibility="Visible"
@@ -105,7 +108,6 @@
                         </DataGrid>
                     </GroupBox>
                 </Grid>
-
             </TabItem>
             <TabItem Header="Планировщик">
                 <DockPanel>
@@ -120,7 +122,7 @@
                                 </StackPanel>
                             </Button>
                             
-                            <Button HorizontalContentAlignment="Stretch" Margin="1" Click="ButtonSend_OnClick">
+                            <Button HorizontalContentAlignment="Stretch" Margin="1" Command="{Binding SendMailCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image DockPanel.Dock="Left" Height="16" Source="Resources/SendEmail_16x.png" Margin="5,0"/>
                                     <TextBlock HorizontalAlignment="Center" Text="Отправить"/>
@@ -153,12 +155,12 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <ListBox Grid.Row="0">
-                                <ListBoxItem>Письмо 1</ListBoxItem>
-                                <ListBoxItem>Письмо 2</ListBoxItem>
-                                <ListBoxItem>Письмо 3</ListBoxItem>
-                                <ListBoxItem>Письмо 4</ListBoxItem>
-                                <ListBoxItem>Письмо 5</ListBoxItem>
+                            <ListBox Grid.Row="0" ItemsSource="{Binding Letters}" SelectedValue="{Binding SelectedLetter}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="entities:Letter">
+                                        <TextBlock Text="{Binding Subject}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                             </ListBox>
                             
                             <UniformGrid Grid.Row="1" Rows="1">
@@ -177,10 +179,10 @@
                             </Grid.RowDefinitions>
 
                             <GroupBox Grid.Row="0" Header="Тема письма">
-                                <TextBox x:Name="TbMessageSubject" Text="Проверка MailSender"/>
+                                <TextBox Text="{Binding SelectedLetter.Subject}"/>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Header="Текст письма">
-                                <TextBox x:Name="TbMessageText" Text="Это письмо отправлено приложением MailSender"
+                                <TextBox Text="{Binding SelectedLetter.Body}"
                                          AcceptsReturn="True" TextWrapping="Wrap" 
                                          VerticalScrollBarVisibility="Visible"/>
                             </GroupBox>

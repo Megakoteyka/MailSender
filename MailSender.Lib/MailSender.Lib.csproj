@@ -42,12 +42,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\TestData.cs" />
+    <Compile Include="MVVM\Command.cs" />
+    <Compile Include="Services\DataManager.cs" />
+    <Compile Include="Services\DebugLettersStore.cs" />
+    <Compile Include="Services\DebugMailSender.cs" />
     <Compile Include="Entities\Letter.cs" />
     <Compile Include="Entities\Recipient.cs" />
     <Compile Include="Entities\Sender.cs" />
     <Compile Include="Entities\Server.cs" />
-    <Compile Include="MailSender.cs" />
+    <Compile Include="Services\DebugRecipientsStore.cs" />
+    <Compile Include="Services\DebugSendersStore.cs" />
+    <Compile Include="Services\DebugServersStore.cs" />
+    <Compile Include="Services\LettersManager.cs" />
+    <Compile Include="Services\MailSender.cs" />
+    <Compile Include="MVVM\ViewModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RecipientsManager.cs" />
+    <Compile Include="Services\SendersManager.cs" />
+    <Compile Include="Services\ServersManager.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
