@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MailSender.Lib.Data;
 using MailSender.Lib.Entities;
+using MailSender.Lib.MVVM;
 
 namespace MailSender.Lib.Services
 {
-    public class DebugSendersStore
+    public class DebugSendersStore : IStore<Sender>
     {
-        public IEnumerable<Sender> Senders => TestData.Senders;
+        public IEnumerable<Sender> Items => TestData.Senders;
     }
 }

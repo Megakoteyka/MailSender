@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using MailSender.Lib.Entities;
+using MailSender.Lib.MVVM;
 
 namespace MailSender.Lib.Services
 {
     public class SendersManager:DataManager<Sender>
     {
-        private readonly DebugSendersStore _sendersStore;
+        private readonly IStore<Sender> _sendersStore;
 
-        public SendersManager(DebugSendersStore sendersStore) => _sendersStore = sendersStore;
+        public SendersManager(IStore<Sender> sendersStore) => _sendersStore = sendersStore;
 
-        public override IEnumerable<Sender> Read() => _sendersStore?.Senders;
+        public override IEnumerable<Sender> Read() => _sendersStore?.Items;
 
         public override void Add(Sender item) => throw new NotImplementedException();
 

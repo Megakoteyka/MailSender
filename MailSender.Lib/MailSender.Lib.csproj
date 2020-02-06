@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Data\TestData.cs" />
     <Compile Include="MVVM\Command.cs" />
-    <Compile Include="Services\DataManager.cs" />
+    <Compile Include="MVVM\DataManager.cs" />
     <Compile Include="Services\DebugLettersStore.cs" />
     <Compile Include="Services\DebugMailSender.cs" />
     <Compile Include="Entities\Letter.cs" />
@@ -53,6 +53,7 @@
     <Compile Include="Services\DebugRecipientsStore.cs" />
     <Compile Include="Services\DebugSendersStore.cs" />
     <Compile Include="Services\DebugServersStore.cs" />
+    <Compile Include="MVVM\IStore.cs" />
     <Compile Include="Services\LettersManager.cs" />
     <Compile Include="Services\MailSender.cs" />
     <Compile Include="MVVM\ViewModel.cs" />

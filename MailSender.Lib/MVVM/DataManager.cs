@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MailSender.Lib.Services
+namespace MailSender.Lib.MVVM
 {
     public abstract class DataManager<T>
     {
