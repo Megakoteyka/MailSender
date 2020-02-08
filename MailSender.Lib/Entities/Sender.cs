@@ -4,6 +4,8 @@ namespace MailSender.Lib.Entities
 {
     public class Sender:ICloneable
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
         
         public string Address { get; set; }
