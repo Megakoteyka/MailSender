@@ -4,6 +4,7 @@ using System.Security;
 
 namespace MailSender
 {
+/*
     public static class EmailSendServiceClass
     {
         public static void SendMail(string from, string to, string subject, string body, MailServerInfo server, string username, SecureString password)
@@ -19,4 +20,5 @@ namespace MailSender
             }
         }
     }
+*/
 }

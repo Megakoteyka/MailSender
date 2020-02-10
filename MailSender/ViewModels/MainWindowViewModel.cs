@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
 using MailSender.Lib.Entities;
 using MailSender.Lib.MVVM;
 using MailSender.Lib.Services;
 
 namespace MailSender.ViewModels
 {
-    class MainWindowViewModel : ViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
         private readonly ServersManager _serversManager;
         private readonly SendersManager _sendersManager;

@@ -2,6 +2,7 @@
 
 namespace MailSender
 {
+/*
     public class MailServerInfo
     {
         public string Name { get; }
@@ -31,4 +32,5 @@ namespace MailSender
             };
         }
     }
+*/
 }
