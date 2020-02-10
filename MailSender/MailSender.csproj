@@ -96,11 +96,11 @@
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="RecipientsView.xaml.cs">
-      <DependentUpon>RecipientsView.xaml</DependentUpon>
+    <Compile Include="Views\RecipientControl.xaml.cs">
+      <DependentUpon>RecipientControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecipientView.xaml.cs">
-      <DependentUpon>RecipientView.xaml</DependentUpon>
+    <Compile Include="Views\RecipientsControl.xaml.cs">
+      <DependentUpon>RecipientsControl.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountInfoWindow.xaml">
       <SubType>Designer</SubType>
@@ -118,8 +118,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EmailSendServiceClass.cs" />
-    <Compile Include="MailServerInfo.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -128,11 +126,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecipientsView.xaml">
+    <Page Include="Views\RecipientControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecipientView.xaml">
+    <Page Include="Views\RecipientsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +183,8 @@
       <Name>MailSender.Lib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Refresh_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

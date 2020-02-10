@@ -57,8 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\TestData.cs" />
-    <Compile Include="MVVM\Command.cs" />
-    <Compile Include="MVVM\DataManager.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\NamedEntity.cs" />
+    <Compile Include="Interfaces\IDataManager.cs" />
+    <Compile Include="Interfaces\ILettersManager.cs" />
+    <Compile Include="Interfaces\IRecipientsManager.cs" />
+    <Compile Include="Interfaces\ISendersManager.cs" />
+    <Compile Include="Interfaces\IServersManager.cs" />
+    <Compile Include="MVVM\DebugStore.cs" />
+    <Compile Include="Interfaces\ILettersStore.cs" />
+    <Compile Include="Interfaces\IRecipientsStore.cs" />
+    <Compile Include="Interfaces\ISendersStore.cs" />
+    <Compile Include="Interfaces\IServersStore.cs" />
     <Compile Include="Services\DebugLettersStore.cs" />
     <Compile Include="Services\DebugMailSender.cs" />
     <Compile Include="Entities\Letter.cs" />
@@ -68,10 +78,9 @@
     <Compile Include="Services\DebugRecipientsStore.cs" />
     <Compile Include="Services\DebugSendersStore.cs" />
     <Compile Include="Services\DebugServersStore.cs" />
-    <Compile Include="MVVM\IStore.cs" />
+    <Compile Include="Interfaces\IStore.cs" />
     <Compile Include="Services\LettersManager.cs" />
     <Compile Include="Services\MailSender.cs" />
-    <Compile Include="MVVM\ViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\RecipientsManager.cs" />

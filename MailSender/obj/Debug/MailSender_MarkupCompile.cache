@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Николай\Desktop\GeekBrains\C# Level 3\MailSender\MailSender\App.xaml
-6447970291
+6-313562982
 
-14-1993369268
+12-1948682974
 128711556934
-AccountInfoWindow.xaml;EditSenderWindow.xaml;Views\MainWindow.xaml;MessageWindow.xaml;RecipientsView.xaml;RecipientView.xaml;
+AccountInfoWindow.xaml;EditSenderWindow.xaml;Views\MainWindow.xaml;MessageWindow.xaml;Views\RecipientControl.xaml;Views\RecipientsControl.xaml;
 
 False
 
