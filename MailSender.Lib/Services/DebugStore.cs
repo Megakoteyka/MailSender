@@ -4,7 +4,7 @@ using System.Linq;
 using MailSender.Lib.Entities;
 using MailSender.Lib.Interfaces;
 
-namespace MailSender.Lib.MVVM
+namespace MailSender.Lib.Services
 {
     public abstract class DebugStore<T> : IStore<T> where T:Entity
     {
@@ -17,7 +17,8 @@ namespace MailSender.Lib.MVVM
 
         public int Create(T item)
         {
-            if (_items.Contains(item)) return item.Id;
+            if (_items.Contains(item)) 
+                return item.Id;
 
             item.Id = _items.Count == 0 ? 1 : _items.Max(i => i.Id) + 1;
             _items.Add(item);
@@ -35,9 +36,9 @@ namespace MailSender.Lib.MVVM
 
         public void SaveChanges() => Debug.WriteLine($"{GetType().Name}.SaveChanges()");
 
-        protected DebugStore(IEnumerable<T> items)
+        protected DebugStore(IEnumerable<T> items = null)
         {
-            _items=new List<T>(items);
+            _items = items != null ? new List<T>(items) : new List<T>();
         }
     }
 }

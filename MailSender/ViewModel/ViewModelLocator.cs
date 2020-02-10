@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using CommonServiceLocator;
 using MailSender.Lib.Interfaces;
-using MailSender.Lib.MVVM;
 using MailSender.Lib.Services;
 using MailSender.ViewModels;
 

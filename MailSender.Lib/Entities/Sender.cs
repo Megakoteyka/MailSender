@@ -2,12 +2,8 @@
 
 namespace MailSender.Lib.Entities
 {
-    public class Sender: Entity, ICloneable
+    public class Sender: PersonEntity, ICloneable
     {
-        public string Name { get; set; }
-        
-        public string Address { get; set; }
-
         public string Comment { get; set; }
         
         public override string ToString() => Name;

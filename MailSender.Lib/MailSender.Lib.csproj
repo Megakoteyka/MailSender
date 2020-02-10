@@ -58,13 +58,16 @@
   <ItemGroup>
     <Compile Include="Data\TestData.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\MailingList.cs" />
     <Compile Include="Entities\NamedEntity.cs" />
+    <Compile Include="Entities\PersonEntity.cs" />
+    <Compile Include="Entities\SchedulerTask.cs" />
     <Compile Include="Interfaces\IDataManager.cs" />
     <Compile Include="Interfaces\ILettersManager.cs" />
     <Compile Include="Interfaces\IRecipientsManager.cs" />
     <Compile Include="Interfaces\ISendersManager.cs" />
     <Compile Include="Interfaces\IServersManager.cs" />
-    <Compile Include="MVVM\DebugStore.cs" />
+    <Compile Include="Services\DebugStore.cs" />
     <Compile Include="Interfaces\ILettersStore.cs" />
     <Compile Include="Interfaces\IRecipientsStore.cs" />
     <Compile Include="Interfaces\ISendersStore.cs" />

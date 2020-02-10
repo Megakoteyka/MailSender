@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using MailSender.Lib.Entities;
 using MailSender.Lib.Interfaces;
-using MailSender.Lib.MVVM;
 
 namespace MailSender.Lib.Services
 {
