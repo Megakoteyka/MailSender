@@ -18,12 +18,12 @@
         <Style BasedOn="{StaticResource MarginStyle}" TargetType="{x:Type TextBox}"/>
         <Style BasedOn="{StaticResource MarginStyle}" TargetType="{x:Type TextBlock}"/>
 
-        <ControlTemplate x:Key="ErrorTemplate" TargetType="Control">
+        <ControlTemplate x:Key="ErrorTemplate">
             <StackPanel Orientation="Horizontal">
-                <AdornedElementPlaceholder/>
-                <TextBlock Text="!" FontSize="16" FontWeight="Bold" Foreground="Red"/>
+                <AdornedElementPlaceholder x:Name="ErrorElement" ToolTip="{Binding (Validation.Errors)[0].ErrorContent}"/>
+                <TextBlock Text="!" FontSize="16" FontWeight="Bold" Foreground="Red"
+                           ToolTip="{Binding ElementName=ErrorElement, Path=(Validation.Errors)[0].ErrorContent}"/>
             </StackPanel>
-
         </ControlTemplate>
     </UserControl.Resources>
 
