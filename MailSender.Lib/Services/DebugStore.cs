@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using MailSender.Lib.Entities;
@@ -17,6 +18,9 @@ namespace MailSender.Lib.Services
 
         public int Create(T item)
         {
+            if(item == null)
+                throw new ArgumentNullException(nameof(item));
+
             if (_items.Contains(item)) 
                 return item.Id;
 
@@ -36,9 +40,7 @@ namespace MailSender.Lib.Services
 
         public void SaveChanges() => Debug.WriteLine($"{GetType().Name}.SaveChanges()");
 
-        protected DebugStore(IEnumerable<T> items = null)
-        {
+        protected DebugStore(IEnumerable<T> items = null) =>
             _items = items != null ? new List<T>(items) : new List<T>();
-        }
     }
 }
