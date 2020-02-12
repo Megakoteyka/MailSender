@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MailSender.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RecipientView.xaml
+    /// Логика взаимодействия для RecipientControl.xaml
     /// </summary>
-    public partial class RecipientView : UserControl
+    public partial class RecipientControl : UserControl
     {
-        public RecipientView()
+        public RecipientControl()
         {
             InitializeComponent();
         }
