@@ -1,9 +1,7 @@
 ﻿namespace MailSender.Lib.Entities
 {
-    public class Server
+    public class Server : Entity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
         
         public string Address { get; set; }

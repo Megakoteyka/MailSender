@@ -1,13 +1,16 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.Lib.Entities;
-using MailSender.Lib.MVVM;
 using MailSender.Lib.Services;
 
 namespace MailSender.ViewModels
 {
-    class MainWindowViewModel : ViewModel
+    [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
+    public class MainWindowViewModel : ViewModelBase
     {
         private readonly ServersManager _serversManager;
         private readonly SendersManager _sendersManager;
@@ -77,6 +80,9 @@ namespace MailSender.ViewModels
 
         public ICommand SendMailCommand { get; }
 
+        public ICommand SaveRecipientCommand { get; }
+        public ICommand CreateRecipientCommand { get; }
+
 
         public MainWindowViewModel()
         {
@@ -85,31 +91,32 @@ namespace MailSender.ViewModels
             _recipientsManager = new RecipientsManager(new DebugRecipientsStore());
             _lettersManager = new LettersManager(new DebugLettersStore());
 
-            _servers = new ObservableCollection<Server>(_serversManager.Read());
-            _senders = new ObservableCollection<Sender>(_sendersManager.Read());
-            _recipients=new ObservableCollection<Recipient>(_recipientsManager.Read());
-            _letters=new ObservableCollection<Letter>(_lettersManager.Read());
+            Servers = new ObservableCollection<Server>(_serversManager.Read());
+            Senders = new ObservableCollection<Sender>(_sendersManager.Read());
+            Recipients = new ObservableCollection<Recipient>(_recipientsManager.Read());
+            Letters = new ObservableCollection<Letter>(_lettersManager.Read());
 
             SelectedServer = _servers.FirstOrDefault();
             SelectedSender = _senders.FirstOrDefault();
             SelectedRecipient = _recipients.FirstOrDefault();
-            _selectedLetter = _letters.FirstOrDefault();
-            
+            SelectedLetter = _letters.FirstOrDefault();
 
-            RefreshRecipientsCommand = new Command(RefreshRecipientsCommandAction);
 
-            SendMailCommand = new Command(SendMailCommandAction);
-        }
+            RefreshRecipientsCommand = new RelayCommand(
+                () => Recipients = new ObservableCollection<Recipient>(_recipientsManager.Read()),
+                () => true);
 
-        private void RefreshRecipientsCommandAction(object o)
-        {
-            _recipients = new ObservableCollection<Recipient>(_recipientsManager.Read());
-        }
+            SendMailCommand = new RelayCommand(
+                () => new DebugMailSender(SelectedServer).Send(SelectedLetter, SelectedSender.Address, SelectedRecipient.Address), 
+                () => SelectedServer != null && SelectedLetter != null && SelectedSender != null && SelectedRecipient != null);
 
-        private void SendMailCommandAction(object obj)
-        {
-            new DebugMailSender(SelectedServer)
-                .Send(SelectedLetter, _selectedSender.Address, SelectedRecipient.Address);
+            SaveRecipientCommand = new RelayCommand(
+                () => _recipientsManager.Update(SelectedRecipient),
+                () => SelectedRecipient != null);
+
+            CreateRecipientCommand = new RelayCommand(
+                () => _recipientsManager.Add(SelectedRecipient),
+                () => SelectedRecipient != null);
         }
     }
 }
