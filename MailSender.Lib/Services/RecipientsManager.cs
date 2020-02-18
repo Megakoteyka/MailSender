@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using MailSender.Lib.Entities;
 using MailSender.Lib.Interfaces;
 
@@ -15,13 +13,13 @@ namespace MailSender.Lib.Services
         public IEnumerable<Recipient> Read() => _recipientsStore?.GetItems();
 
         public void Add(Recipient item) =>
-            Debug.WriteLine($"RecipientsManager.Create Id = {item.Id}, Name = {item.Name}, Address = {item.Address}");
+            System.Diagnostics.Debug.WriteLine($"RecipientsManager.Create Id = {item.Id}, Name = {item.Name}, Address = {item.Address}");
 
-        public void Update(Recipient item) => 
-            Debug.WriteLine($"RecipientsManager.Update Id = {item.Id}, Name = {item.Name}, Address = {item.Address}");
+        public void Update(Recipient item) =>
+            System.Diagnostics.Debug.WriteLine($"RecipientsManager.Update Id = {item.Id}, Name = {item.Name}, Address = {item.Address}");
 
-        public void Delete(Recipient item) => 
-            Debug.WriteLine($"RecipientsManager.Delete Id = {item.Id}, Name = {item.Name}, Address = {item.Address}");
+        public void Delete(Recipient item) =>
+            System.Diagnostics.Debug.WriteLine($"RecipientsManager.Delete Id = {item.Id}, Name = {item.Name}, Address = {item.Address}");
 
     }
 }

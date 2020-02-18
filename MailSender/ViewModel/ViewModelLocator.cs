@@ -4,6 +4,9 @@ using CommonServiceLocator;
 using MailSender.Lib.Interfaces;
 using MailSender.Lib.Services;
 using MailSender.ViewModels;
+using MailSender.Lib.Data;
+using MailSender.Lib.Services.Base;
+using MailSender.Lib.Services.DebugServices;
 
 namespace MailSender.ViewModel
 {
@@ -29,6 +32,10 @@ namespace MailSender.ViewModel
             SimpleIoc.Default.Register<ILettersManager, LettersManager>();
             SimpleIoc.Default.Register<ISendersManager, SendersManager>();
             SimpleIoc.Default.Register<IRecipientsManager, RecipientsManager>();
+
+            SimpleIoc.Default.Register<MailSenderDbContext>();
+            SimpleIoc.Default.Register<DbContextService<MailSenderDbContext>>();
+
 
             SimpleIoc.Default.Register<MainWindowViewModel>();
         }

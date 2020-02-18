@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.Lib.Entities;
 using MailSender.Lib.Services;
+using MailSender.Lib.Services.DebugServices;
 
 namespace MailSender.ViewModels
 {

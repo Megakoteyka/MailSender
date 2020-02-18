@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MailSender.Lib.Entities
+namespace MailSender.Lib.Entities.Base
 {
     public class NamedEntity : Entity, IDataErrorInfo
     {
+        [Required]
         public string Name { get; set; }
 
-        public override string ToString() => base.ToString() + $", Name = {Name}";
-
+        [NotMapped]
         public virtual string this[string columnName]
         {
             get
@@ -29,6 +31,9 @@ namespace MailSender.Lib.Entities
             }
         }
 
+        [NotMapped]
         public virtual string Error => null;
+
+        public override string ToString() => base.ToString() + $", Name = {Name}";
     }
 }

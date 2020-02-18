@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using MailSender.Lib.Entities;
 
-namespace MailSender.Lib.Services
+namespace MailSender.Lib.Services.DebugServices
 {
     public class DebugMailSender
     {

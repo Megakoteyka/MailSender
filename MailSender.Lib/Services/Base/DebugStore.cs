@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using MailSender.Lib.Entities;
+using MailSender.Lib.Entities.Base;
 using MailSender.Lib.Interfaces;
 
-namespace MailSender.Lib.Services
+namespace MailSender.Lib.Services.Base
 {
     public abstract class DebugStore<T> : IStore<T> where T:Entity
     {

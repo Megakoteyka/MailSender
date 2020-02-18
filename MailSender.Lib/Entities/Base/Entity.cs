@@ -1,4 +1,4 @@
-﻿namespace MailSender.Lib.Entities
+﻿namespace MailSender.Lib.Entities.Base
 {
     public class Entity
     {
