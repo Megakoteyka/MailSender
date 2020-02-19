@@ -5,8 +5,10 @@ using MailSender.Lib.Interfaces;
 using MailSender.Lib.Services;
 using MailSender.ViewModels;
 using MailSender.Lib.Data;
+using MailSender.Lib.Entities;
 using MailSender.Lib.Services.Base;
 using MailSender.Lib.Services.DebugServices;
+using MailSender.Lib.Services.DbServices;
 
 namespace MailSender.ViewModel
 {
@@ -24,17 +26,19 @@ namespace MailSender.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<IServersStore, DebugServersStore>();
-            SimpleIoc.Default.Register<ILettersStore, DebugLettersStore>();
+            SimpleIoc.Default.Register<IMailsStore, DebugMailsStore>();
             SimpleIoc.Default.Register<ISendersStore, DebugSendersStore>();
-            SimpleIoc.Default.Register<IRecipientsStore, DebugRecipientsStore>();
+            //SimpleIoc.Default.Register<IRecipientsStore, DebugRecipientsStore>();
+            SimpleIoc.Default.Register<IRecipientsStore, DbRecipientsStore>();
+
 
             SimpleIoc.Default.Register<IServersManager, ServersManager>();
-            SimpleIoc.Default.Register<ILettersManager, LettersManager>();
+            SimpleIoc.Default.Register<IMailsManager, MailsManager>();
             SimpleIoc.Default.Register<ISendersManager, SendersManager>();
             SimpleIoc.Default.Register<IRecipientsManager, RecipientsManager>();
 
             SimpleIoc.Default.Register<MailSenderDbContext>();
-            SimpleIoc.Default.Register<DbContextService<MailSenderDbContext>>();
+            SimpleIoc.Default.Register<IDbContextService<MailSenderDbContext>, DbContextService<MailSenderDbContext>>();
 
 
             SimpleIoc.Default.Register<MainWindowViewModel>();

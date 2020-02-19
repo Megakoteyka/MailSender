@@ -37,11 +37,11 @@ namespace MailSender.Lib.Services.DebugServices
                             $"{Environment.NewLine}Body: {body}");
         }
         
-        public void Send(Letter letter, string from, string to)
+        public void Send(Mail mail, string from, string to)
         {
             Debug.WriteLine($"Sent from {from} to {to} via {_address}:{_port} ({(_useSsl ? "SSL" : "no SSL")})" +
-                            $"{Environment.NewLine}Subject: {letter.Subject}" +
-                            $"{Environment.NewLine}Body: {letter.Body}");
+                            $"{Environment.NewLine}Subject: {mail.Subject}" +
+                            $"{Environment.NewLine}Body: {mail.Body}");
         }
     }
 }

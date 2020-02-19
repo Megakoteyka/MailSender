@@ -2,7 +2,7 @@
 
 namespace MailSender.Lib.Interfaces
 {
-    public interface ILettersManager : IDataManager<Letter>
+    public interface IMailsManager : IDataManager<Mail>
     {
     }
 }

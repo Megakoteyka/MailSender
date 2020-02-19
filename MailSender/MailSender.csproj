@@ -98,7 +98,7 @@
     <Compile Include="AccountInfoWindow.xaml.cs">
       <DependentUpon>AccountInfoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditSenderWindow.xaml.cs">
+    <Compile Include="Views\EditSenderWindow.xaml.cs">
       <DependentUpon>EditSenderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageWindow.xaml.cs">
@@ -107,6 +107,9 @@
     <Compile Include="ValidationRules\RegExValidationRule.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\EditServerWindow.xaml.cs">
+      <DependentUpon>EditServerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecipientControl.xaml.cs">
       <DependentUpon>RecipientControl.xaml</DependentUpon>
     </Compile>
@@ -117,7 +120,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditSenderWindow.xaml">
+    <Page Include="Views\EditSenderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditServerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +203,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Refresh_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cancel_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Save_16x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

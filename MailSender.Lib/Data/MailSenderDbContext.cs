@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Diagnostics;
 using MailSender.Lib.Entities;
 
 namespace MailSender.Lib.Data
@@ -11,17 +12,18 @@ namespace MailSender.Lib.Data
 
         public DbSet<Recipient> Recipients { get; set; }
 
-        public DbSet<Letter> Letters { get; set; }
+        public DbSet<Mail> Mails { get; set; }
 
         public DbSet<MailingList> MailingLists { get; set; }
 
         public DbSet<SchedulerTask> SchedulerTasks { get; set; }
 
-
-
-
-        public MailSenderDbContext()
+        
+        public MailSenderDbContext():base("MailSenderDbConnection")
         {
+            Database.SetInitializer(new MailSenderDbInitializer());
+
+            Database.Log = s => Debug.WriteLine(s);
         }
     }
 }

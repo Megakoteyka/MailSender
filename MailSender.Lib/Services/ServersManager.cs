@@ -5,11 +5,11 @@ using MailSender.Lib.Interfaces;
 
 namespace MailSender.Lib.Services
 {
-    public class ServersManager:IServersManager
+    public class ServersManager : IServersManager
     {
-        private readonly IStore<Server> _serversStore;
+        private readonly IServersStore _serversStore;
 
-        public ServersManager(IStore<Server> serversStore) => _serversStore = serversStore;
+        public ServersManager(IServersStore serversStore) => _serversStore = serversStore;
 
         public IEnumerable<Server> Read() => _serversStore?.GetItems();
 

@@ -5,21 +5,21 @@ using MailSender.Lib.Services.Base;
 
 namespace MailSender.Lib.Services.DebugServices
 {
-    public class DebugLettersStore : DebugStore<Letter>, ILettersStore
+    public class DebugMailsStore : DebugStore<Mail>, IMailsStore
     {
-        public DebugLettersStore():base(TestData.Letters)
+        public DebugMailsStore():base(TestData.Mails)
         {
             
         }
 
-        public override void Update(int id, Letter letter)
+        public override void Update(int id, Mail mail)
         {
             var dbLetter = GetById(id);
             if (dbLetter == null)
                 return;
 
-            dbLetter.Subject = letter.Subject;
-            dbLetter.Body = letter.Body;
+            dbLetter.Subject = mail.Subject;
+            dbLetter.Body = mail.Body;
         }
     }
 }

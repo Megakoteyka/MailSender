@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\MailSenderDbContext.cs" />
+    <Compile Include="Data\MailSenderDbInitializer.cs" />
     <Compile Include="Data\TestData.cs" />
     <Compile Include="Entities\Base\Entity.cs" />
     <Compile Include="Entities\MailingList.cs" />
@@ -74,19 +75,23 @@
     <Compile Include="Entities\Base\PersonEntity.cs" />
     <Compile Include="Entities\SchedulerTask.cs" />
     <Compile Include="Interfaces\IDataManager.cs" />
-    <Compile Include="Interfaces\ILettersManager.cs" />
+    <Compile Include="Interfaces\IDbContextService.cs" />
+    <Compile Include="Interfaces\IMailsManager.cs" />
     <Compile Include="Interfaces\IRecipientsManager.cs" />
     <Compile Include="Interfaces\ISendersManager.cs" />
     <Compile Include="Interfaces\IServersManager.cs" />
     <Compile Include="Services\Base\DbContextService.cs" />
+    <Compile Include="Services\Base\DbStore.cs" />
     <Compile Include="Services\Base\DebugStore.cs" />
-    <Compile Include="Interfaces\ILettersStore.cs" />
+    <Compile Include="Interfaces\IMailsStore.cs" />
     <Compile Include="Interfaces\IRecipientsStore.cs" />
     <Compile Include="Interfaces\ISendersStore.cs" />
     <Compile Include="Interfaces\IServersStore.cs" />
-    <Compile Include="Services\DebugServices\DebugLettersStore.cs" />
+    <Compile Include="Services\DbServices\DbRecipientsStore.cs" />
+    <Compile Include="Services\DbServices\DbServersStore.cs" />
+    <Compile Include="Services\DebugServices\DebugMailsStore.cs" />
     <Compile Include="Services\DebugServices\DebugMailSender.cs" />
-    <Compile Include="Entities\Letter.cs" />
+    <Compile Include="Entities\Mail.cs" />
     <Compile Include="Entities\Recipient.cs" />
     <Compile Include="Entities\Sender.cs" />
     <Compile Include="Entities\Server.cs" />
@@ -94,7 +99,7 @@
     <Compile Include="Services\DebugServices\DebugSendersStore.cs" />
     <Compile Include="Services\DebugServices\DebugServersStore.cs" />
     <Compile Include="Interfaces\IStore.cs" />
-    <Compile Include="Services\LettersManager.cs" />
+    <Compile Include="Services\MailsManager.cs" />
     <Compile Include="Services\MailSender.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

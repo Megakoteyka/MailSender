@@ -3,7 +3,7 @@ using MailSender.Lib.Entities.Base;
 
 namespace MailSender.Lib.Entities
 {
-    public class Letter : Entity
+    public class Mail : Entity
     {
         public string Subject { get; set; }
         
