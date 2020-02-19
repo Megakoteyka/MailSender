@@ -13,10 +13,10 @@ namespace MailSender.Lib.Services
 
         public IEnumerable<Server> Read() => _serversStore?.GetItems();
 
-        public void Add(Server item) => throw new NotImplementedException();
+        public void Add(Server item) => _serversStore?.Create(item);
 
-        public void Update(Server item) => throw new NotImplementedException();
+        public void Update(Server item) => _serversStore?.Update(item.Id, item);
 
-        public void Delete(Server item) => throw new NotImplementedException();
+        public void Delete(Server item) => _serversStore?.Delete(item.Id);
     }
 }

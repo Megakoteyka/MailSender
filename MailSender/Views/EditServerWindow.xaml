@@ -64,8 +64,8 @@
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Password}"/>
 
         <UniformGrid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Columns="2" HorizontalAlignment="Center">
-            <Button HorizontalAlignment="Stretch">Save</Button>
-            <Button HorizontalAlignment="Stretch">Cancel</Button>
+            <Button HorizontalAlignment="Stretch" IsDefault="True" Click="ButtonOk_OnClick">Save</Button>
+            <Button HorizontalAlignment="Stretch" IsCancel="True" Click="ButtonCancel_OnClick">Cancel</Button>
         </UniformGrid>
     </Grid>
 </Window>

@@ -23,5 +23,17 @@ namespace MailSender.Views
         {
             InitializeComponent();
         }
+
+        private void ButtonOk_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
+
+        private void ButtonCancel_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }

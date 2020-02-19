@@ -25,7 +25,8 @@ namespace MailSender.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<IServersStore, DebugServersStore>();
+            //SimpleIoc.Default.Register<IServersStore, DebugServersStore>();
+            SimpleIoc.Default.Register<IServersStore, DbServersStore>();
             SimpleIoc.Default.Register<IMailsStore, DebugMailsStore>();
             SimpleIoc.Default.Register<ISendersStore, DebugSendersStore>();
             //SimpleIoc.Default.Register<IRecipientsStore, DebugRecipientsStore>();

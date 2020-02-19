@@ -158,7 +158,7 @@ namespace MailSender.ViewModels
 
                     _serversManager.Add(server);
                     Servers = new ObservableCollection<Server>(_serversManager.Read());
-                    SelectedServer = server;
+                    SelectedServer = Servers.FirstOrDefault(s => server != null && s.Id == server.Id);
                 },
                 () => true);
 
@@ -187,7 +187,7 @@ namespace MailSender.ViewModels
 
                     _serversManager.Update(server);
                     Servers = new ObservableCollection<Server>(_serversManager.Read());
-                    SelectedServer = server;
+                    SelectedServer = Servers.FirstOrDefault(s => server != null && s.Id == server.Id);
                 },
                 () => SelectedServer != null);
 
