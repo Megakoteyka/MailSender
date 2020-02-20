@@ -1,19 +1,27 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using MailSender.Lib.Entities.Base;
+using MailSender.Lib.Reports;
 
 namespace MailSender.Lib.Entities
 {
     public class Server : NamedEntity, ICloneable
     {
         [Required]
+        [IncludeToReport]
+        [DisplayName("Адрес")]
         public string Address { get; set; }
         
         [Required]
+        [IncludeToReport]
+        [DisplayName("Порт")]
         public ushort Port { get; set; }
         
         // ReSharper disable once InconsistentNaming
         [Required]
+        [IncludeToReport]
+        [DisplayName("SSL")]
         public bool UseSSL { get; set; } = true;
         
         [Required]

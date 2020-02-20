@@ -12,7 +12,7 @@ namespace MailSender.Lib.Data
             context.Servers.AddRange(TestData.Servers);
             context.Senders.AddRange(TestData.Senders);
             context.Recipients.AddRange(TestData.Recipients);
-            context.Recipients.Add(new Recipient{Name = "DB", Address = "DB@DB.DB"});
+            context.Recipients.Add(new Recipient{Name = "Recipient from database", Address = "rfd@db.com"});
             context.Mails.AddRange(TestData.Mails);
 
             context.SaveChanges();

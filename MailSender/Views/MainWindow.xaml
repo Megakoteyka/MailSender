@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MailSender"
         xmlns:entities="clr-namespace:MailSender.Lib.Entities;assembly=MailSender.Lib"
         xmlns:views="clr-namespace:MailSender.Views"
+        xmlns:reports="clr-namespace:MailSender.Lib.Reports;assembly=MailSender.Lib"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
         Title="WpfMailSender" Height="450" Width="800">
@@ -184,6 +185,25 @@
                     </GroupBox>
 
                 </Grid>
+            </TabItem>
+            <TabItem Header="Отчеты">
+                <ItemsControl ItemsSource="{Binding ReportGenerators}" HorizontalContentAlignment="Stretch">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                     <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="reports:ReportGenerator">
+                            <Border BorderThickness="1" BorderBrush="Gray" Margin="5">
+                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                                        Content="{Binding Name}" 
+                                        Command="{Binding GenerateReportCommand}"
+                                        HorizontalAlignment="Stretch"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+               </ItemsControl>
             </TabItem>
         </TabControl>
 

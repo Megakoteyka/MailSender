@@ -1,12 +1,15 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MailSender.Lib.Reports;
 
 namespace MailSender.Lib.Entities.Base
 {
     public class NamedEntity : Entity, IDataErrorInfo
     {
         [Required]
+        [IncludeToReport]
+        [DisplayName("Имя")]
         public string Name { get; set; }
 
         [NotMapped]

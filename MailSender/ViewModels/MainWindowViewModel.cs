@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -10,6 +11,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.Lib.Data;
 using MailSender.Lib.Entities;
 using MailSender.Lib.Interfaces;
+using MailSender.Lib.Reports;
 using MailSender.Lib.Services;
 using MailSender.Lib.Services.Base;
 using MailSender.Lib.Services.DebugServices;
@@ -115,6 +117,8 @@ namespace MailSender.ViewModels
         #endregion
 
 
+        public IEnumerable<ReportGenerator> ReportGenerators { get; }
+
         public MainWindowViewModel(
             IServersManager serversManager,
             ISendersManager sendersManager,
@@ -196,11 +200,11 @@ namespace MailSender.ViewModels
                 () => throw new NotImplementedException(),
                 () => true);
 
-            DeleteSenderCommand=new RelayCommand(
+            DeleteSenderCommand = new RelayCommand(
                 () => throw new NotImplementedException(),
                 () => true);
 
-            EditSenderCommand= new RelayCommand(
+            EditSenderCommand = new RelayCommand(
                 () => throw new NotImplementedException(),
                 () => true);
 
@@ -210,8 +214,10 @@ namespace MailSender.ViewModels
                 () => true);
 
             SendMailCommand = new RelayCommand(
-                () => new DebugMailSender(SelectedServer).Send(SelectedMail, SelectedSender.Address, SelectedRecipient.Address), 
-                () => SelectedServer != null && SelectedMail != null && SelectedSender != null && SelectedRecipient != null);
+                () => new DebugMailSender(SelectedServer).Send(SelectedMail, SelectedSender.Address,
+                    SelectedRecipient.Address),
+                () => SelectedServer != null && SelectedMail != null && SelectedSender != null &&
+                      SelectedRecipient != null);
 
             SaveRecipientCommand = new RelayCommand(
                 () => _recipientsManager.Update(SelectedRecipient),
@@ -227,6 +233,23 @@ namespace MailSender.ViewModels
                 () => true);
 
             #endregion
+
+
+            ReportGenerators = new List<ReportGenerator>
+            {
+                new ReportGenerator("Создать отчет о серверах", new RelayCommand(() =>
+                {
+                    SimpleReport<Server>.Create(@"Серверы.docx", "СЕРВЕРЫ", Servers);
+                }, () => true)),
+                new ReportGenerator("Создать отчет об отправителях", new RelayCommand(() =>
+                {
+                    SimpleReport<Sender>.Create(@"Отправители.docx", "ОТПРАВИТЕЛИ", Senders);
+                }, () => true)),
+                new ReportGenerator("Создать отчет о получателях", new RelayCommand(() =>
+                {
+                    SimpleReport<Recipient>.Create(@"Получатели.docx", "ПОЛУЧАТЕЛИ", Recipients);
+                }, () => true)),
+            };
         }
-        }
+    }
 }

@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using MailSender.Lib.Reports;
 
 namespace MailSender.Lib.Entities.Base
 {
     public class PersonEntity : NamedEntity
     {
+        [IncludeToReport]
+        [DisplayName("Адрес")]
         public string Address { get; set; }
 
         [NotMapped]
