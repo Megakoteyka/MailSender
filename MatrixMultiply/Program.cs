@@ -5,6 +5,8 @@ using System.Reflection;
 
 namespace MatrixMultiply
 {
+    using System.Text;
+
     internal static class Program
     {
         private const int Rows = 10;

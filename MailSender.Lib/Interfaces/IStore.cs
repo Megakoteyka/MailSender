@@ -12,6 +12,6 @@ namespace MailSender.Lib.Interfaces
         void Update(int id, T item);
         T Delete(int id);
 
-        void SaveChanges();
+        //void SaveChanges();
     }
 }

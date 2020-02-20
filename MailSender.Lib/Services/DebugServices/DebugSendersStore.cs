@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using MailSender.Lib.Data;
+﻿using MailSender.Lib.Data;
 using MailSender.Lib.Entities;
 using MailSender.Lib.Interfaces;
+using MailSender.Lib.Services.Base;
 
-namespace MailSender.Lib.Services
+namespace MailSender.Lib.Services.DebugServices
 {
     public class DebugSendersStore : DebugStore<Sender>, ISendersStore
     {

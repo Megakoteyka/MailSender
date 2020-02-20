@@ -7,9 +7,9 @@ namespace MailSender.Lib.Services
 {
     public class SendersManager:ISendersManager
     {
-        private readonly IStore<Sender> _sendersStore;
+        private readonly ISendersStore _sendersStore;
 
-        public SendersManager(IStore<Sender> sendersStore) => _sendersStore = sendersStore;
+        public SendersManager(ISendersStore sendersStore) => _sendersStore = sendersStore;
 
         public IEnumerable<Sender> Read() => _sendersStore?.GetItems();
 

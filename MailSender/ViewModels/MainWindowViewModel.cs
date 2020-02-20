@@ -1,31 +1,44 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using MailSender.Lib.Data;
 using MailSender.Lib.Entities;
+using MailSender.Lib.Interfaces;
+using MailSender.Lib.Reports;
 using MailSender.Lib.Services;
+using MailSender.Lib.Services.Base;
+using MailSender.Lib.Services.DebugServices;
+using MailSender.Views;
+using Xceed.Wpf.Toolkit.Core.Converters;
 
 namespace MailSender.ViewModels
 {
     [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly ServersManager _serversManager;
-        private readonly SendersManager _sendersManager;
-        private readonly RecipientsManager _recipientsManager;
-        private readonly LettersManager _lettersManager;
+        private readonly IDbContextService<MailSenderDbContext> _dbContextService;
+
+        private readonly IServersManager _serversManager;
+        private readonly ISendersManager _sendersManager;
+        private readonly IRecipientsManager _recipientsManager;
+        private readonly IMailsManager _mailsManager;
 
         private ObservableCollection<Server> _servers;
         private ObservableCollection<Sender> _senders;
         private ObservableCollection<Recipient> _recipients;
-        private ObservableCollection<Letter> _letters;
+        private ObservableCollection<Mail> _letters;
 
         private Server _selectedServer;
         private Sender _selectedSender;
         private Recipient _selectedRecipient;
-        private Letter _selectedLetter;
+        private Mail _selectedMail;
 
         public ObservableCollection<Server> Servers
         {
@@ -45,7 +58,7 @@ namespace MailSender.ViewModels
             private set => Set(ref _recipients, value);
         }
 
-        public ObservableCollection<Letter> Letters
+        public ObservableCollection<Mail> Letters
         {
             get => _letters;
             private set => Set(ref _letters, value);
@@ -70,11 +83,29 @@ namespace MailSender.ViewModels
             set => Set(ref _selectedRecipient, value);
         }
 
-        public Letter SelectedLetter
+        public Mail SelectedMail
         {
-            get => _selectedLetter;
-            set => Set(ref _selectedLetter, value);
+            get => _selectedMail;
+            set => Set(ref _selectedMail, value);
         }
+
+
+
+
+
+
+
+
+        #region Commands
+
+        public ICommand AddServerCommand { get; }
+        public ICommand DeleteServerCommand { get; }
+        public ICommand EditServerCommand { get; }
+
+        public ICommand AddSenderCommand { get; }
+        public ICommand DeleteSenderCommand { get; }
+        public ICommand EditSenderCommand { get; }
+
 
         public ICommand RefreshRecipientsCommand { get; }
 
@@ -83,23 +114,99 @@ namespace MailSender.ViewModels
         public ICommand SaveRecipientCommand { get; }
         public ICommand CreateRecipientCommand { get; }
 
+        #endregion
 
-        public MainWindowViewModel()
+
+        public IEnumerable<ReportGenerator> ReportGenerators { get; }
+
+        public MainWindowViewModel(
+            IServersManager serversManager,
+            ISendersManager sendersManager,
+            IRecipientsManager recipientsManager,
+            IMailsManager mailsManager,
+            IDbContextService<MailSenderDbContext> dbContextService)
         {
-            _serversManager = new ServersManager(new DebugServersStore());
-            _sendersManager = new SendersManager(new DebugSendersStore());
-            _recipientsManager = new RecipientsManager(new DebugRecipientsStore());
-            _lettersManager = new LettersManager(new DebugLettersStore());
+            _serversManager = serversManager;
+            _sendersManager = sendersManager;
+            _recipientsManager = recipientsManager;
+            _mailsManager = mailsManager;
+
+            _dbContextService = dbContextService;
 
             Servers = new ObservableCollection<Server>(_serversManager.Read());
             Senders = new ObservableCollection<Sender>(_sendersManager.Read());
             Recipients = new ObservableCollection<Recipient>(_recipientsManager.Read());
-            Letters = new ObservableCollection<Letter>(_lettersManager.Read());
+            Letters = new ObservableCollection<Mail>(_mailsManager.Read());
 
             SelectedServer = _servers.FirstOrDefault();
             SelectedSender = _senders.FirstOrDefault();
             SelectedRecipient = _recipients.FirstOrDefault();
-            SelectedLetter = _letters.FirstOrDefault();
+            SelectedMail = _letters.FirstOrDefault();
+
+
+            #region Commands
+
+            AddServerCommand = new RelayCommand(
+                () =>
+                {
+                    var dialog = new EditServerWindow
+                    {
+                        Owner = Application.Current.MainWindow,
+                        DataContext = new Server()
+                    };
+
+                    if (dialog.ShowDialog() != true)
+                        return;
+
+                    var server = dialog.DataContext as Server;
+
+                    _serversManager.Add(server);
+                    Servers = new ObservableCollection<Server>(_serversManager.Read());
+                    SelectedServer = Servers.FirstOrDefault(s => server != null && s.Id == server.Id);
+                },
+                () => true);
+
+            DeleteServerCommand = new RelayCommand(
+                () =>
+                {
+                    // TODO запросить подтверждение удаления
+                    _serversManager.Delete(SelectedServer);
+                    Servers = new ObservableCollection<Server>(_serversManager.Read());
+                },
+                () => SelectedServer != null);
+
+            EditServerCommand = new RelayCommand(
+                () =>
+                {
+                    var dialog = new EditServerWindow
+                    {
+                        Owner = Application.Current.MainWindow,
+                        DataContext = SelectedServer.Clone() as Server
+                    };
+
+                    if (dialog.ShowDialog() != true)
+                        return;
+
+                    var server = dialog.DataContext as Server;
+
+                    _serversManager.Update(server);
+                    Servers = new ObservableCollection<Server>(_serversManager.Read());
+                    SelectedServer = Servers.FirstOrDefault(s => server != null && s.Id == server.Id);
+                },
+                () => SelectedServer != null);
+
+
+            AddSenderCommand = new RelayCommand(
+                () => throw new NotImplementedException(),
+                () => true);
+
+            DeleteSenderCommand = new RelayCommand(
+                () => throw new NotImplementedException(),
+                () => true);
+
+            EditSenderCommand = new RelayCommand(
+                () => throw new NotImplementedException(),
+                () => true);
 
 
             RefreshRecipientsCommand = new RelayCommand(
@@ -107,16 +214,42 @@ namespace MailSender.ViewModels
                 () => true);
 
             SendMailCommand = new RelayCommand(
-                () => new DebugMailSender(SelectedServer).Send(SelectedLetter, SelectedSender.Address, SelectedRecipient.Address), 
-                () => SelectedServer != null && SelectedLetter != null && SelectedSender != null && SelectedRecipient != null);
+                () => new DebugMailSender(SelectedServer).Send(SelectedMail, SelectedSender.Address,
+                    SelectedRecipient.Address),
+                () => SelectedServer != null && SelectedMail != null && SelectedSender != null &&
+                      SelectedRecipient != null);
 
             SaveRecipientCommand = new RelayCommand(
                 () => _recipientsManager.Update(SelectedRecipient),
                 () => SelectedRecipient != null);
 
             CreateRecipientCommand = new RelayCommand(
-                () => _recipientsManager.Add(SelectedRecipient),
-                () => SelectedRecipient != null);
+                () =>
+                {
+                    var newRecipient = new Recipient {Name = "New recipient", Address = "new@recipient.com"};
+                    _recipientsManager.Add(newRecipient);
+                    SelectedRecipient = newRecipient;
+                },
+                () => true);
+
+            #endregion
+
+
+            ReportGenerators = new List<ReportGenerator>
+            {
+                new ReportGenerator("Создать отчет о серверах", new RelayCommand(() =>
+                {
+                    SimpleReport<Server>.Create(@"Серверы.docx", "СЕРВЕРЫ", Servers);
+                }, () => true)),
+                new ReportGenerator("Создать отчет об отправителях", new RelayCommand(() =>
+                {
+                    SimpleReport<Sender>.Create(@"Отправители.docx", "ОТПРАВИТЕЛИ", Senders);
+                }, () => true)),
+                new ReportGenerator("Создать отчет о получателях", new RelayCommand(() =>
+                {
+                    SimpleReport<Recipient>.Create(@"Получатели.docx", "ПОЛУЧАТЕЛИ", Recipients);
+                }, () => true)),
+            };
         }
     }
 }

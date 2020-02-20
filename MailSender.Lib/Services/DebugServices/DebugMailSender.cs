@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using MailSender.Lib.Entities;
 
-namespace MailSender.Lib.Services
+namespace MailSender.Lib.Services.DebugServices
 {
     public class DebugMailSender
     {
         private readonly string _address;
-        private readonly ushort _port;
+        private readonly int _port;
         private readonly bool _useSsl;
         private readonly string _login;
         private readonly string _password;
@@ -37,11 +37,11 @@ namespace MailSender.Lib.Services
                             $"{Environment.NewLine}Body: {body}");
         }
         
-        public void Send(Letter letter, string from, string to)
+        public void Send(Mail mail, string from, string to)
         {
             Debug.WriteLine($"Sent from {from} to {to} via {_address}:{_port} ({(_useSsl ? "SSL" : "no SSL")})" +
-                            $"{Environment.NewLine}Subject: {letter.Subject}" +
-                            $"{Environment.NewLine}Body: {letter.Body}");
+                            $"{Environment.NewLine}Subject: {mail.Subject}" +
+                            $"{Environment.NewLine}Body: {mail.Body}");
         }
     }
 }

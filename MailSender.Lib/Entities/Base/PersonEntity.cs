@@ -1,13 +1,17 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+using MailSender.Lib.Reports;
 
-namespace MailSender.Lib.Entities
+namespace MailSender.Lib.Entities.Base
 {
     public class PersonEntity : NamedEntity
     {
+        [IncludeToReport]
+        [DisplayName("Адрес")]
         public string Address { get; set; }
 
-        public override string ToString() => base.ToString() + $", Address = {Address}";
-
+        [NotMapped]
         public override string this[string columnName]
         {
             get
@@ -23,5 +27,7 @@ namespace MailSender.Lib.Entities
                 return base[columnName];
             }
         }
+
+        public override string ToString() => base.ToString() + $", Address = {Address}";
     }
 }

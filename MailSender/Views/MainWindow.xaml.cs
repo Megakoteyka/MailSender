@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows;
-using MailSender.Lib.Data;
-using MailSender.Lib.Entities;
+﻿using System.Windows;
 
-namespace MailSender
+namespace MailSender.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -15,6 +12,7 @@ namespace MailSender
             InitializeComponent();
         }
 
+/*
         private void ButtonEditSender_OnClick(object sender, RoutedEventArgs e)
         {
             var mailSender = CbSenders.SelectedValue as Sender;
@@ -29,5 +27,6 @@ namespace MailSender
             TestData.Senders.Insert(index, dialog.DataContext as Sender);
             CbSenders.SelectedIndex = index;
         }
+*/
     }
 }

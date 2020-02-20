@@ -1,7 +1,8 @@
-﻿namespace MailSender.Lib.Entities
+﻿using MailSender.Lib.Entities.Base;
+
+namespace MailSender.Lib.Entities
 {
     public class Recipient: PersonEntity
     {
-        public override string ToString() => Name;
     }
 }

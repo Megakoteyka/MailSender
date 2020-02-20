@@ -15,29 +15,29 @@ namespace MatrixMultiply
     {
         #region это сгенерил ReSharper
 
-        //protected bool Equals(Matrix other)
-        //{
-        //    return Equals(_matrix, other._matrix) && Rows == other.Rows && Columns == other.Columns;
-        //}
+        protected bool Equals(Matrix other)
+        {
+            return Equals(_matrix, other._matrix) && Rows == other.Rows && Columns == other.Columns;
+        }
 
-        //public override bool Equals(object obj)
-        //{
-        //    if (ReferenceEquals(null, obj)) return false;
-        //    if (ReferenceEquals(this, obj)) return true;
-        //    if (obj.GetType() != this.GetType()) return false;
-        //    return Equals((Matrix)obj);
-        //}
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Matrix)obj);
+        }
 
-        //public override int GetHashCode()
-        //{
-        //    unchecked
-        //    {
-        //        var hashCode = (_matrix != null ? _matrix.GetHashCode() : 0);
-        //        hashCode = (hashCode * 397) ^ Rows;
-        //        hashCode = (hashCode * 397) ^ Columns;
-        //        return hashCode;
-        //    }
-        //}
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (_matrix != null ? _matrix.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Rows;
+                hashCode = (hashCode * 397) ^ Columns;
+                return hashCode;
+            }
+        }
 
         #endregion
 

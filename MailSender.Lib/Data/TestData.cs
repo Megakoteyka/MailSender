@@ -26,11 +26,11 @@ namespace MailSender.Lib.Data
             new Recipient{Id = 3, Name = "Carol", Address = "carol@gmail.com"}
         };
 
-        public static readonly ObservableCollection<Letter> Letters = new ObservableCollection<Letter>()
+        public static readonly ObservableCollection<Mail> Mails = new ObservableCollection<Mail>()
         {
-            new Letter {Id = 1, Subject = "Письмо 1", Body = "Проверка рассыльщика писем 1"},
-            new Letter {Id = 2, Subject = "Письмо 2", Body = "Проверка рассыльщика писем 2"},
-            new Letter {Id = 3, Subject = "Письмо 3", Body = "Проверка рассыльщика писем 3"},
+            new Mail {Id = 1, Subject = "Письмо 1", Body = "Проверка рассыльщика писем 1"},
+            new Mail {Id = 2, Subject = "Письмо 2", Body = "Проверка рассыльщика писем 2"},
+            new Mail {Id = 3, Subject = "Письмо 3", Body = "Проверка рассыльщика писем 3"},
         };
     }
 }

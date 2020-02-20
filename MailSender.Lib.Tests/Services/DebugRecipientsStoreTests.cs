@@ -1,5 +1,6 @@
 ﻿using System;
 using MailSender.Lib.Services;
+using MailSender.Lib.Services.DebugServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MailSender.Lib.Tests.Services

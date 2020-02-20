@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MailSender
+namespace MailSender.Views
 {
     /// <summary>
     /// Логика взаимодействия для EditSenderWindow.xaml

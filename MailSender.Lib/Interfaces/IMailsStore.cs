@@ -2,7 +2,7 @@
 
 namespace MailSender.Lib.Interfaces
 {
-    public interface ILettersStore : IStore<Letter>
+    public interface IMailsStore : IStore<Mail>
     {
     }
 }

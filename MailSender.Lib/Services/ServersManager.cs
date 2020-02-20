@@ -5,18 +5,18 @@ using MailSender.Lib.Interfaces;
 
 namespace MailSender.Lib.Services
 {
-    public class ServersManager:IServersManager
+    public class ServersManager : IServersManager
     {
-        private readonly IStore<Server> _serversStore;
+        private readonly IServersStore _serversStore;
 
-        public ServersManager(IStore<Server> serversStore) => _serversStore = serversStore;
+        public ServersManager(IServersStore serversStore) => _serversStore = serversStore;
 
         public IEnumerable<Server> Read() => _serversStore?.GetItems();
 
-        public void Add(Server item) => throw new NotImplementedException();
+        public void Add(Server item) => _serversStore?.Create(item);
 
-        public void Update(Server item) => throw new NotImplementedException();
+        public void Update(Server item) => _serversStore?.Update(item.Id, item);
 
-        public void Delete(Server item) => throw new NotImplementedException();
+        public void Delete(Server item) => _serversStore?.Delete(item.Id);
     }
 }

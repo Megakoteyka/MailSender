@@ -10,7 +10,6 @@
              d:DesignHeight="100" d:DesignWidth="200">
 
     <UserControl.Resources>
-
         <Style x:Key="MarginStyle" TargetType="FrameworkElement">
             <Setter Property="Margin" Value="3,1"/>
         </Style>
