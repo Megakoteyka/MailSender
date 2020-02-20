@@ -16,7 +16,7 @@ namespace MailSender.Lib.Entities
         [Required]
         [IncludeToReport]
         [DisplayName("Порт")]
-        public ushort Port { get; set; }
+        public int Port { get; set; }
         
         // ReSharper disable once InconsistentNaming
         [Required]

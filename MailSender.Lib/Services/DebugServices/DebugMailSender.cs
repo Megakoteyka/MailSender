@@ -7,7 +7,7 @@ namespace MailSender.Lib.Services.DebugServices
     public class DebugMailSender
     {
         private readonly string _address;
-        private readonly ushort _port;
+        private readonly int _port;
         private readonly bool _useSsl;
         private readonly string _login;
         private readonly string _password;
